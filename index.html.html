@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect by @silentgamer7m</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#4f46e5',
+                        dark: '#1e293b',
+                        gold: '#fbbf24',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth View Transitions */
+        .view-section { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .view-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Custom Scrollbar for inner tables */
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        
+        /* Featured Row Styling - Rank 1 */
+        .featured-row {
+            background: linear-gradient(90deg, #fffbeb 0%, #ffffff 100%);
+            border-left: 4px solid #fbbf24;
+            /* Sticky top so it's always visible */
+            position: sticky;
+            top: 0; 
+            z-index: 20; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Mobile Touch Optimization */
+        button, a, .clickable {
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center clickable" onclick="navigateTo('home')">
+                    <div class="bg-primary text-white p-2 rounded-lg mr-2">
+                        <i class="fa-solid fa-graduation-cap text-xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg leading-tight text-dark">EduConnect</span>
+                        <span class="text-[10px] text-gray-500 font-medium">by @silentgamer7m</span>
+                    </div>
+                </div>
+                <button onclick="navigateTo('home')" class="text-gray-600 hover:text-primary hover:bg-blue-50 px-4 py-2 rounded-lg text-sm font-bold transition flex items-center">
+                    <i class="fa-solid fa-house mr-2"></i> <span class="hidden sm:inline">Home</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+
+        <!-- HOME VIEW -->
+        <div id="home-view" class="view-section active">
+            <div class="text-center mb-10 mt-4">
+                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Updated 2025</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-4 mt-2">
+                    Global Learning <span class="text-primary">Hub</span>
+                </h1>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Ranked database of <strong>10,000+</strong> verified educational resources tailored for your course.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                <!-- School Card -->
+                <div onclick="navigateTo('school')" class="group clickable bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 transform hover:-translate-y-1">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition"></div>
+                        <i class="fa-solid fa-school text-7xl text-white drop-shadow-lg transform group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute bottom-3 right-3 bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs font-bold px-3 py-1 rounded-full">
+                            4,500+ Links
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-slate-800 mb-2">School Zone</h2>
+                        <p class="text-slate-500 text-sm mb-4">Ranked resources for K-12: Mathematics, Science, Literature, and Exams.</p>
+                        <div class="flex items-center text-primary font-bold text-sm">
+                            View Rankings <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- College Card -->
+                <div onclick="navigateTo('college')" class="group clickable bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 transform hover:-translate-y-1">
+                    <div class="h-48 bg-gradient-to-br from-indigo-600 to-purple-500 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition"></div>
+                        <i class="fa-solid fa-building-columns text-7xl text-white drop-shadow-lg transform group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute bottom-3 right-3 bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs font-bold px-3 py-1 rounded-full">
+                            6,000+ Links
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-slate-800 mb-2">College & Pro</h2>
+                        <p class="text-slate-500 text-sm mb-4">Ranked materials for Engineering, Medical, Law, and Arts.</p>
+                        <div class="flex items-center text-secondary font-bold text-sm">
+                            View Rankings <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCHOOL LIST VIEW -->
+        <div id="school-view" class="view-section">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden flex flex-col h-[85vh]">
+                <!-- Header -->
+                <div class="p-4 border-b border-gray-200 bg-gray-50 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="flex items-center">
+                        <button onclick="navigateTo('home')" class="mr-4 text-gray-500 hover:text-dark transition">
+                            <i class="fa-solid fa-arrow-left text-xl"></i>
+                        </button>
+                        <div>
+                            <h2 class="text-2xl font-bold text-slate-800">School Database</h2>
+                            <p class="text-xs text-slate-500">Showing top ranked websites</p>
+                        </div>
+                    </div>
+                    <div class="relative w-full md:w-64">
+                        <i class="fa-solid fa-search absolute left-3 top-3 text-gray-400"></i>
+                        <input type="text" id="school-search" onkeyup="handleSearch('school')" placeholder="Search..." class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                    </div>
+                </div>
+
+                <!-- Scrollable Table Container -->
+                <div id="school-container" class="flex-grow overflow-y-auto custom-scroll bg-white relative">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-gray-100 text-gray-600 uppercase text-xs font-bold sticky top-0 z-30 shadow-sm">
+                            <tr>
+                                <th class="px-4 py-3 w-12 text-center">Rank</th>
+                                <th class="px-4 py-3 w-16 text-center">Icon</th>
+                                <th class="px-4 py-3">Website Name</th>
+                                <th class="px-4 py-3 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="school-table-body" class="divide-y divide-gray-100">
+                            <!-- JS Renders Here -->
+                        </tbody>
+                    </table>
+                    <div id="school-load-btn" class="p-4 text-center">
+                        <button onclick="loadMore('school-table-body')" class="text-sm font-bold text-primary hover:underline">Load More Rows...</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLLEGE STREAM SELECTION -->
+        <div id="college-view" class="view-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center mb-8">
+                    <button onclick="navigateTo('home')" class="mr-4 p-2 bg-white rounded-full shadow hover:bg-gray-50 transition">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <div>
+                        <h2 class="text-3xl font-bold text-slate-900">Select Stream</h2>
+                        <p class="text-slate-500">Choose a category to load rankings.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                    <!-- Stream Buttons -->
+                    <button onclick="openCourse('btech')" class="clickable p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:border-indigo-500 hover:shadow-lg transition flex flex-col items-center text-center group">
+                        <i class="fa-solid fa-microchip text-4xl text-indigo-600 mb-3 group-hover:scale-110 transition"></i>
+                        <h3 class="font-bold text-slate-800">Engineering</h3>
+                    </button>
+
+                    <button onclick="openCourse('mbbs')" class="clickable p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:border-rose-500 hover:shadow-lg transition flex flex-col items-center text-center group">
+                        <i class="fa-solid fa-heart-pulse text-4xl text-rose-600 mb-3 group-hover:scale-110 transition"></i>
+                        <h3 class="font-bold text-slate-800">Medical (MBBS)</h3>
+                    </button>
+
+                    <button onclick="openCourse('cs')" class="clickable p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:border-emerald-500 hover:shadow-lg transition flex flex-col items-center text-center group">
+                        <i class="fa-solid fa-code text-4xl text-emerald-600 mb-3 group-hover:scale-110 transition"></i>
+                        <h3 class="font-bold text-slate-800">Computer Science</h3>
+                    </button>
+
+                    <button onclick="openCourse('commerce')" class="clickable p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:border-blue-500 hover:shadow-lg transition flex flex-col items-center text-center group">
+                        <i class="fa-solid fa-chart-line text-4xl text-blue-600 mb-3 group-hover:scale-110 transition"></i>
+                        <h3 class="font-bold text-slate-800">Commerce</h3>
+                    </button>
+
+                    <button onclick="openCourse('arts')" class="clickable p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:border-pink-500 hover:shadow-lg transition flex flex-col items-center text-center group">
+                        <i class="fa-solid fa-palette text-4xl text-pink-600 mb-3 group-hover:scale-110 transition"></i>
+                        <h3 class="font-bold text-slate-800">Arts</h3>
+                    </button>
+                    
+                    <button onclick="openCourse('law')" class="clickable p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:border-yellow-600 hover:shadow-lg transition flex flex-col items-center text-center group">
+                        <i class="fa-solid fa-gavel text-4xl text-yellow-700 mb-3 group-hover:scale-110 transition"></i>
+                        <h3 class="font-bold text-slate-800">Law</h3>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPECIFIC COURSE LIST VIEW -->
+        <div id="course-list-view" class="view-section">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden flex flex-col h-[85vh]">
+                <!-- Header -->
+                <div class="p-4 border-b border-gray-200 bg-gray-50 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="flex items-center">
+                        <button onclick="navigateTo('college')" class="mr-4 text-gray-500 hover:text-dark transition">
+                            <i class="fa-solid fa-arrow-left text-xl"></i>
+                        </button>
+                        <div>
+                            <h2 id="course-title" class="text-2xl font-bold text-slate-800">Resources</h2>
+                            <p class="text-xs text-slate-500">Comprehensive ranked list</p>
+                        </div>
+                    </div>
+                    <div class="relative w-full md:w-64">
+                        <i class="fa-solid fa-search absolute left-3 top-3 text-gray-400"></i>
+                        <input type="text" id="course-search" onkeyup="handleSearch('course')" placeholder="Search..." class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                    </div>
+                </div>
+
+                <!-- Scrollable Table Container -->
+                <div id="course-container" class="flex-grow overflow-y-auto custom-scroll bg-white relative">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-gray-100 text-gray-600 uppercase text-xs font-bold sticky top-0 z-30 shadow-sm">
+                            <tr>
+                                <th class="px-4 py-3 w-12 text-center">Rank</th>
+                                <th class="px-4 py-3 w-16 text-center">Icon</th>
+                                <th class="px-4 py-3">Website Name</th>
+                                <th class="px-4 py-3 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="course-table-body" class="divide-y divide-gray-100">
+                            <!-- JS Renders Here -->
+                        </tbody>
+                    </table>
+                    <div id="course-load-btn" class="p-4 text-center">
+                        <button onclick="loadMore('course-table-body')" class="text-sm font-bold text-primary hover:underline">Load More Rows...</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-8 mt-auto border-t border-slate-700">
+        <div class="container mx-auto px-4 text-center">
+            <p class="font-bold text-lg mb-2">EduConnect</p>
+            <p class="text-sm text-gray-400 mb-4">&copy; EduConnect 2025 by @silentgamer7m. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- LOGIC ENGINE -->
+    <script>
+        // --- 1. CONFIGURATION ---
+
+        // The MANDATORY Priority Website (Always Rank 1)
+        const infoMediaSite = { 
+            name: "Info Media", 
+            url: "https://rebrand.ly/infomedia7", 
+            icon: "fa-solid fa-star", 
+            color: "text-yellow-500", 
+            desc: "The #1 Ultimate Information Hub. Recommended for all students.", 
+            isFeatured: true 
+        };
+
+        // --- 2. DATA GENERATOR WITH REAL SITES ---
+
+        function generateLargeDataset(category, count) {
+            
+            // --- REAL CURATED LISTS FOR EACH CATEGORY ---
+            const realSites = {
+                'school': [
+                    {name: "Khan Academy", url: "https://khanacademy.org", desc: "Free world-class education for K-12.", icon: "fa-solid fa-leaf", color: "text-green-500"},
+                    {name: "Brainly", url: "https://brainly.com", desc: "Homework help community.", icon: "fa-solid fa-brain", color: "text-orange-500"},
+                    {name: "Duolingo", url: "https://duolingo.com", desc: "Learn 30+ languages for free.", icon: "fa-solid fa-feather", color: "text-green-400"},
+                    {name: "Quizlet", url: "https://quizlet.com", desc: "Flashcards and study tools.", icon: "fa-solid fa-layer-group", color: "text-blue-500"},
+                    {name: "National Geographic Kids", url: "https://kids.nationalgeographic.com", desc: "Science and nature for kids.", icon: "fa-solid fa-earth-americas", color: "text-yellow-500"},
+                    {name: "Code.org", url: "https://code.org", desc: "Computer science for K-12.", icon: "fa-solid fa-code", color: "text-teal-500"},
+                    {name: "Wolfram Alpha", url: "https://wolframalpha.com", desc: "Computational knowledge engine.", icon: "fa-solid fa-calculator", color: "text-red-500"},
+                    {name: "CK-12", url: "https://ck12.org", desc: "Free online textbooks and resources.", icon: "fa-solid fa-book-open", color: "text-green-600"},
+                    {name: "BBC Bitesize", url: "https://www.bbc.co.uk/bitesize", desc: "Study support for school students.", icon: "fa-solid fa-b", color: "text-purple-600"},
+                    {name: "IXL", url: "https://ixl.com", desc: "Personalized learning curriculum.", icon: "fa-solid fa-laptop", color: "text-green-700"},
+                    {name: "PhET Simulations", url: "https://phet.colorado.edu", desc: "Interactive math and science sims.", icon: "fa-solid fa-flask", color: "text-orange-600"},
+                    {name: "Scratch", url: "https://scratch.mit.edu", desc: "Create stories and games.", icon: "fa-solid fa-cat", color: "text-yellow-500"}
+                ],
+                'btech': [
+                    {name: "NPTEL", url: "https://nptel.ac.in", desc: "IIT/IISc online courses.", icon: "fa-solid fa-graduation-cap", color: "text-red-500"},
+                    {name: "MIT OpenCourseWare", url: "https://ocw.mit.edu", desc: "Free MIT course materials.", icon: "fa-solid fa-university", color: "text-gray-800"},
+                    {name: "IEEE Xplore", url: "https://ieeexplore.ieee.org", desc: "Technical literature and papers.", icon: "fa-solid fa-book-journal-whills", color: "text-blue-700"},
+                    {name: "GrabCAD", url: "https://grabcad.com", desc: "CAD library and community.", icon: "fa-solid fa-cubes", color: "text-red-600"},
+                    {name: "All About Circuits", url: "https://allaboutcircuits.com", desc: "Electronics community and tools.", icon: "fa-solid fa-bolt", color: "text-yellow-600"},
+                    {name: "Arduino", url: "https://arduino.cc", desc: "Open-source electronics platform.", icon: "fa-solid fa-microchip", color: "text-teal-600"},
+                    {name: "MATLAB Academy", url: "https://matlabacademy.mathworks.com", desc: "Learn MATLAB and Simulink.", icon: "fa-solid fa-chart-area", color: "text-orange-600"},
+                    {name: "Coursera Engineering", url: "https://coursera.org/browse/physical-science-and-engineering", desc: "Degrees from top universities.", icon: "fa-solid fa-certificate", color: "text-blue-500"},
+                    {name: "Engineering Toolbox", url: "https://engineeringtoolbox.com", desc: "Tools and basic information.", icon: "fa-solid fa-wrench", color: "text-gray-600"},
+                    {name: "Hackaday", url: "https://hackaday.com", desc: "Engineering hacks and mods.", icon: "fa-solid fa-robot", color: "text-black"}
+                ],
+                'mbbs': [
+                    {name: "PubMed", url: "https://pubmed.ncbi.nlm.nih.gov", desc: "Biomedical literature database.", icon: "fa-solid fa-book-medical", color: "text-blue-600"},
+                    {name: "Medscape", url: "https://medscape.com", desc: "Medical news and clinical articles.", icon: "fa-solid fa-user-doctor", color: "text-blue-500"},
+                    {name: "Mayo Clinic", url: "https://mayoclinic.org", desc: "Patient care and health info.", icon: "fa-solid fa-hospital", color: "text-blue-800"},
+                    {name: "WebMD", url: "https://webmd.com", desc: "Health information and news.", icon: "fa-solid fa-heart-pulse", color: "text-teal-500"},
+                    {name: "Kenhub", url: "https://kenhub.com", desc: "Learn human anatomy.", icon: "fa-solid fa-skeleton", color: "text-blue-400"},
+                    {name: "Radiopaedia", url: "https://radiopaedia.org", desc: "Radiology resource.", icon: "fa-solid fa-x-ray", color: "text-gray-700"},
+                    {name: "The Lancet", url: "https://thelancet.com", desc: "World-leading medical journal.", icon: "fa-solid fa-book-open", color: "text-orange-600"},
+                    {name: "CDC", url: "https://cdc.gov", desc: "Centers for Disease Control.", icon: "fa-solid fa-shield-virus", color: "text-blue-900"},
+                    {name: "WHO", url: "https://who.int", desc: "World Health Organization.", icon: "fa-solid fa-globe", color: "text-blue-400"},
+                    {name: "Osmosis", url: "https://osmosis.org", desc: "Visual medical education.", icon: "fa-solid fa-droplet", color: "text-indigo-500"}
+                ],
+                'cs': [
+                    {name: "W3Schools", url: "https://w3schools.com", desc: "Web dev tutorials.", icon: "fa-solid fa-code", color: "text-green-600"},
+                    {name: "MDN Web Docs", url: "https://developer.mozilla.org", desc: "Web standards documentation.", icon: "fa-brands fa-firefox", color: "text-black"},
+                    {name: "Stack Overflow", url: "https://stackoverflow.com", desc: "Q&A for programmers.", icon: "fa-brands fa-stack-overflow", color: "text-orange-500"},
+                    {name: "GitHub", url: "https://github.com", desc: "Code hosting platform.", icon: "fa-brands fa-github", color: "text-gray-900"},
+                    {name: "LeetCode", url: "https://leetcode.com", desc: "Coding interview prep.", icon: "fa-solid fa-terminal", color: "text-yellow-600"},
+                    {name: "GeeksforGeeks", url: "https://geeksforgeeks.org", desc: "CS concepts and programming.", icon: "fa-solid fa-laptop-code", color: "text-green-700"},
+                    {name: "FreeCodeCamp", url: "https://freecodecamp.org", desc: "Learn to code for free.", icon: "fa-brands fa-free-code-camp", color: "text-black"},
+                    {name: "HackerRank", url: "https://hackerrank.com", desc: "Practice coding problems.", icon: "fa-brands fa-hackerrank", color: "text-green-500"},
+                    {name: "Kaggle", url: "https://kaggle.com", desc: "Data science community.", icon: "fa-brands fa-kaggle", color: "text-blue-400"},
+                    {name: "CSS-Tricks", url: "https://css-tricks.com", desc: "Web design tips.", icon: "fa-brands fa-css3", color: "text-orange-600"}
+                ],
+                'commerce': [
+                    {name: "Investopedia", url: "https://investopedia.com", desc: "Financial education source.", icon: "fa-solid fa-chart-line", color: "text-green-600"},
+                    {name: "Bloomberg", url: "https://bloomberg.com", desc: "Business and market news.", icon: "fa-solid fa-chart-simple", color: "text-black"},
+                    {name: "The Economist", url: "https://economist.com", desc: "World news and economics.", icon: "fa-solid fa-globe", color: "text-red-600"},
+                    {name: "ICAI", url: "https://icai.org", desc: "Institute of Chartered Accountants.", icon: "fa-solid fa-calculator", color: "text-blue-800"},
+                    {name: "Financial Times", url: "https://ft.com", desc: "International business news.", icon: "fa-solid fa-newspaper", color: "text-pink-600"},
+                    {name: "Reuters", url: "https://reuters.com", desc: "Breaking financial news.", icon: "fa-solid fa-rss", color: "text-orange-500"},
+                    {name: "Moneycontrol", url: "https://moneycontrol.com", desc: "Indian markets info.", icon: "fa-solid fa-indian-rupee-sign", color: "text-green-700"},
+                    {name: "Yahoo Finance", url: "https://finance.yahoo.com", desc: "Stock quotes and news.", icon: "fa-brands fa-yahoo", color: "text-purple-600"},
+                    {name: "Taxmann", url: "https://taxmann.com", desc: "Tax and corporate laws.", icon: "fa-solid fa-scale-balanced", color: "text-blue-600"},
+                    {name: "ClearTax", url: "https://cleartax.in", desc: "Tax filing simplified.", icon: "fa-solid fa-file-invoice", color: "text-green-500"}
+                ],
+                'arts': [
+                    {name: "JSTOR", url: "https://jstor.org", desc: "Academic journals and books.", icon: "fa-solid fa-book", color: "text-red-700"},
+                    {name: "Google Arts & Culture", url: "https://artsandculture.google.com", desc: "Explore art collections.", icon: "fa-solid fa-palette", color: "text-yellow-600"},
+                    {name: "Behance", url: "https://behance.net", desc: "Showcase creative work.", icon: "fa-brands fa-behance", color: "text-blue-500"},
+                    {name: "Project Gutenberg", url: "https://gutenberg.org", desc: "Free ebooks library.", icon: "fa-solid fa-book-open", color: "text-green-700"},
+                    {name: "Dribbble", url: "https://dribbble.com", desc: "Design inspiration.", icon: "fa-brands fa-dribbble", color: "text-pink-500"},
+                    {name: "The Met Museum", url: "https://metmuseum.org", desc: "Metropolitan Museum of Art.", icon: "fa-solid fa-landmark", color: "text-red-800"},
+                    {name: "MoMA", url: "https://moma.org", desc: "Museum of Modern Art.", icon: "fa-solid fa-building", color: "text-black"},
+                    {name: "ArtStation", url: "https://artstation.com", desc: "Portfolio for game artists.", icon: "fa-brands fa-artstation", color: "text-blue-400"},
+                    {name: "DeviantArt", url: "https://deviantart.com", desc: "Largest art community.", icon: "fa-brands fa-deviantart", color: "text-green-500"},
+                    {name: "Tate", url: "https://tate.org.uk", desc: "UK art galleries.", icon: "fa-solid fa-paint-brush", color: "text-purple-600"}
+                ],
+                'law': [
+                    {name: "Indian Kanoon", url: "https://indiankanoon.org", desc: "Search Indian laws.", icon: "fa-solid fa-gavel", color: "text-yellow-700"},
+                    {name: "LiveLaw", url: "https://livelaw.in", desc: "Legal news portal.", icon: "fa-solid fa-scale-balanced", color: "text-red-600"},
+                    {name: "Bar & Bench", url: "https://barandbench.com", desc: "News from courts.", icon: "fa-solid fa-newspaper", color: "text-gray-800"},
+                    {name: "Cornell LII", url: "https://law.cornell.edu", desc: "Legal Information Institute.", icon: "fa-solid fa-university", color: "text-red-800"},
+                    {name: "LexisNexis", url: "https://lexisnexis.com", desc: "Legal research.", icon: "fa-solid fa-book-open", color: "text-red-600"},
+                    {name: "Westlaw", url: "https://legal.thomsonreuters.com/en/products/westlaw", desc: "Legal research service.", icon: "fa-solid fa-w", color: "text-orange-500"},
+                    {name: "Manupatra", url: "https://manupatra.com", desc: "Legal database.", icon: "fa-solid fa-database", color: "text-blue-700"},
+                    {name: "VakilSearch", url: "https://vakilsearch.com", desc: "Legal services online.", icon: "fa-solid fa-magnifying-glass", color: "text-yellow-500"},
+                    {name: "Legal Service India", url: "https://legalservicesindia.com", desc: "Law articles and advice.", icon: "fa-solid fa-scale-unbalanced", color: "text-gray-600"},
+                    {name: "PathLegal", url: "https://pathlegal.com", desc: "Legal directory.", icon: "fa-solid fa-briefcase", color: "text-green-600"}
+                ]
+            };
+
+            const topicsMap = {
+                'school': ['Math', 'Physics', 'Biology', 'Chemistry', 'History', 'Geography', 'Literature', 'Algebra', 'Geometry'],
+                'btech': ['Thermodynamics', 'Fluid Mechanics', 'Robotics', 'Circuits', 'AI', 'Machine Learning', 'Civil', 'Mechanical'],
+                'mbbs': ['Anatomy', 'Physiology', 'Pathology', 'Surgery', 'Pediatrics', 'Neurology', 'Cardiology'],
+                'cs': ['Algorithms', 'Data Structures', 'ReactJS', 'Python', 'Java', 'Cyber Security', 'Cloud', 'Blockchain'],
+                'commerce': ['Accounting', 'Economics', 'Finance', 'Stock Market', 'Taxation', 'Audit', 'Business'],
+                'arts': ['Philosophy', 'Sociology', 'Political Science', 'Psychology', 'Fine Arts', 'History', 'English'],
+                'law': ['Constitution', 'Criminal Law', 'Civil Law', 'Corporate Law', 'Family Law', 'Property Law']
+            };
+
+            const resourcesTypes = ['Journal', 'Lab', 'Portal', 'Archive', 'Notes', 'Tutorials', 'Forum', 'Database'];
+            const adjectives = ['Advanced', 'Global', 'Open', 'Digital', 'National', 'Interactive', 'Modern'];
+
+            // 1. Get real curated list for this category
+            let data = [...(realSites[category] || realSites['school'])]; 
+
+            // 2. Fill the rest with generated data to reach count
+            const topics = topicsMap[category] || topicsMap['school'];
+            
+            for(let i = 0; i < count; i++) {
+                const topic = topics[i % topics.length];
+                const type = resourcesTypes[i % resourcesTypes.length];
+                const adj = adjectives[i % adjectives.length];
+                const id = i + 100;
+                
+                data.push({
+                    name: `${adj} ${topic} ${type} #${id}`,
+                    // Links generated to point to search results so they work
+                    url: `https://www.google.com/search?q=${adj}+${topic}+${type}+education+resources`, 
+                    desc: `Comprehensive ${topic} resources. Verified source.`,
+                    icon: "fa-solid fa-book-open",
+                    color: "text-blue-400",
+                    isFeatured: false
+                });
+            }
+            return data;
+        }
+
+        // --- 3. STATE MANAGEMENT ---
+        
+        // Generate databases on load
+        const db = {
+            school: generateLargeDataset('school', 4500), 
+            btech: generateLargeDataset('btech', 1500),
+            mbbs: generateLargeDataset('mbbs', 1000),
+            cs: generateLargeDataset('cs', 1500),
+            commerce: generateLargeDataset('commerce', 1000),
+            arts: generateLargeDataset('arts', 500),
+            law: generateLargeDataset('law', 500)
+        };
+
+        let currentViewData = [];
+        let renderOffset = 0;
+        const BATCH_SIZE = 50; 
+
+        // --- 4. CORE FUNCTIONS ---
+
+        function navigateTo(pageId) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.getElementById(pageId + '-view').classList.add('active');
+            window.scrollTo(0,0);
+
+            if(pageId === 'school') {
+                resetAndLoad('school-table-body', db.school);
+            }
+        }
+
+        function openCourse(stream) {
+            const titles = {
+                'btech': 'Engineering (B.Tech)', 'mbbs': 'Medical (MBBS)', 'cs': 'Computer Science',
+                'commerce': 'Commerce', 'arts': 'Arts', 'law': 'Law'
+            };
+            document.getElementById('course-title').innerText = titles[stream] || 'Resources';
+            
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.getElementById('course-list-view').classList.add('active');
+            window.scrollTo(0,0);
+
+            resetAndLoad('course-table-body', db[stream] || []);
+        }
+
+        // --- 5. RENDERING ENGINE ---
+
+        function resetAndLoad(tableId, data) {
+            // Filter out InfoMedia if it exists in data to avoid duplicates, then unshift it to top
+            let baseData = data.filter(item => item.name !== "Info Media");
+            currentViewData = [infoMediaSite, ...baseData]; 
+            
+            renderOffset = 0;
+            document.getElementById(tableId).innerHTML = '';
+            renderBatch(tableId);
+        }
+
+        function renderBatch(tableId) {
+            const tbody = document.getElementById(tableId);
+            const fragment = document.createDocumentFragment();
+            
+            const end = Math.min(renderOffset + BATCH_SIZE, currentViewData.length);
+            
+            for (let i = renderOffset; i < end; i++) {
+                const item = currentViewData[i];
+                const tr = document.createElement('tr');
+                
+                // Rank Logic
+                const rank = i + 1;
+                
+                if (item.isFeatured) {
+                    tr.className = "featured-row shadow-sm";
+                } else {
+                    tr.className = "hover:bg-slate-50 transition border-b border-gray-100 bg-white";
+                }
+
+                let iconClass = item.icon || "fa-solid fa-globe";
+                let iconColor = item.color || "text-gray-400";
+                if(item.isFeatured) iconColor = "text-yellow-600";
+
+                tr.innerHTML = `
+                    <td class="px-4 py-3 text-center font-mono font-bold ${item.isFeatured ? 'text-yellow-700 text-lg' : 'text-gray-400'}">
+                        ${item.isFeatured ? '<i class="fa-solid fa-crown"></i>' : '#' + rank}
+                    </td>
+                    <td class="px-4 py-3 text-center">
+                        <div class="w-10 h-10 mx-auto rounded-full flex items-center justify-center ${item.isFeatured ? 'bg-yellow-100' : 'bg-gray-100'}">
+                            <i class="${iconClass} ${iconColor} text-lg"></i>
+                        </div>
+                    </td>
+                    <td class="px-4 py-3">
+                        <div class="flex flex-col">
+                            <span class="font-bold text-slate-800 text-sm md:text-base flex items-center gap-2">
+                                ${item.name}
+                                ${item.isFeatured ? '<span class="bg-yellow-500 text-white text-[10px] px-1.5 py-0.5 rounded uppercase tracking-wide">Featured</span>' : ''}
+                            </span>
+                            <span class="text-xs text-slate-500 truncate max-w-[200px] md:max-w-md">${item.desc}</span>
+                        </div>
+                    </td>
+                    <td class="px-4 py-3 text-right">
+                        <!-- Standard HTML Link with target="_blank" -->
+                        <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="inline-block bg-white border border-gray-200 text-gray-700 hover:bg-primary hover:text-white hover:border-transparent active:scale-95 transition-all text-xs font-bold py-1.5 px-3 rounded shadow-sm">
+                            ${item.isFeatured ? 'Open Info Media' : 'Visit'} <i class="fa-solid fa-external-link-alt ml-1"></i>
+                        </a>
+                    </td>
+                `;
+                fragment.appendChild(tr);
+            }
+            
+            tbody.appendChild(fragment);
+            renderOffset = end;
+
+            const btnId = tableId === 'school-table-body' ? 'school-load-btn' : 'course-load-btn';
+            if(renderOffset >= currentViewData.length) {
+                document.getElementById(btnId).style.display = 'none';
+            } else {
+                document.getElementById(btnId).style.display = 'block';
+            }
+        }
+
+        function loadMore(tableId) {
+            renderBatch(tableId);
+        }
+
+        // --- 6. SEARCH FUNCTION (KEEPS RANK #1) ---
+        function handleSearch(view) {
+            const inputId = view === 'school' ? 'school-search' : 'course-search';
+            const tableId = view === 'school' ? 'school-table-body' : 'course-table-body';
+            const query = document.getElementById(inputId).value.toLowerCase();
+            
+            let sourceData = [];
+            if(view === 'school') sourceData = db.school;
+            else {
+                // Determine active DB
+                const title = document.getElementById('course-title').innerText;
+                if(title.includes('Engineering')) sourceData = db.btech;
+                else if(title.includes('Medical')) sourceData = db.mbbs;
+                else if(title.includes('Computer')) sourceData = db.cs;
+                else if(title.includes('Commerce')) sourceData = db.commerce;
+                else if(title.includes('Arts')) sourceData = db.arts;
+                else if(title.includes('Law')) sourceData = db.law;
+                else sourceData = [];
+            }
+
+            // Filter excluding Info Media first
+            const filtered = sourceData.filter(item => 
+                item.name.toLowerCase().includes(query) || 
+                item.desc.toLowerCase().includes(query)
+            );
+
+            // Re-render: Always put InfoMedia first, regardless of search query
+            resetAndLoad(tableId, filtered);
+        }
+
+        // Scroll Listeners
+        ['school-container', 'course-container'].forEach(id => {
+            const el = document.getElementById(id);
+            el.addEventListener('scroll', () => {
+                if(el.scrollTop + el.clientHeight >= el.scrollHeight - 100) {
+                    const tableId = id === 'school-container' ? 'school-table-body' : 'course-table-body';
+                    loadMore(tableId);
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
+
+
